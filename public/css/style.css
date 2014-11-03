@@ -1,0 +1,11 @@
+#incrementCtr {
+	height: 50px;
+	width: 100px;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid #357ebd;
+    border-radius: 4px;
+    cursor: pointer;
+	color: #FFFFFF;
+	background-color: #428bca;
+}

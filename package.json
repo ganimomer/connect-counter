@@ -1,0 +1,22 @@
+{
+  "name": "connect-counter",
+  "version": "1.0.0",
+  "description": "Counts how many times a button has been clicked locally and globally",
+  "main": "connect-counter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ganimomer/connect-counter.git"
+  },
+  "author": "Omer Ganim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ganimomer/connect-counter/issues"
+  },
+  "homepage": "https://github.com/ganimomer/connect-counter",
+  "dependencies": {
+    "express": "^4.10.1"
+  }
+}
