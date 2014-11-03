@@ -6,7 +6,7 @@ var path = require('path');
 
 var app = express(),
     counter = 0;
-app.use(express.static(path.join(__dirname, '/public/')));
+app.use(express.static(path.join(__dirname, '/../public/')));
 
 app.get('/get', function(req, res) {
     console.log('get', counter);
