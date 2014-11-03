@@ -1,7 +1,6 @@
 
 /*eslint-disable no-unused-vars, wrap-iife */
-//used in the HTML file
-
+//the var counter is called in the HTML file
 var counter = (function() {
 /*eslint-enable no-unused-vars */
     'use strict';
@@ -11,26 +10,20 @@ var counter = (function() {
     }
     var localCounter = 0;
 
-    function setContent(element, value)
-    {
-        element.text(value);
-    }
-
-    var initCounters = function initCounters(localEl, globalEl) {
+    function initCounters(localEl, globalEl) {
         localCounter = 0;
-        setContent(localEl, localCounter);
-        setContent(globalEl,'?');
+        localEl.text(localCounter);
 
         $.get('/get', function (data) {
-            setContent(globalEl, data || 0);
+            globalEl.text(data || 0);
         });
     };
 
     function incrementAndUpdate(localEl, globalEl) {
-        localCounter = 1 + parseInt(localCounter, 10);
-        setContent(localEl,localCounter);
+        localCounter++;
+        localEl.text(localCounter);
         $.get('/click', function (data) {
-            setContent(globalEl, data || 0);
+            globalEl.text(data || 0);
         });
     }
 
@@ -43,7 +36,6 @@ var counter = (function() {
                 incrementAndUpdate($localEl,$globalEl);
             });
         },
-        incrementAndUpdate: incrementAndUpdate,
-        initCounters: initCounters
+        incrementAndUpdate: incrementAndUpdate
     };
 })();
