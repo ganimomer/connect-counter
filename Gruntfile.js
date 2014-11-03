@@ -2,18 +2,15 @@
 
 module.exports = function(grunt) {
     grunt.config.init({
-       connect: {
-           server: {
-               options: {
-                   hostname: 'localhost',
-                   useAvailablePort: true,
-                   base: 'src',
-                   open: true,
-                   keepalive: true
-               }
-           }
-       }
+        eslint: {
+            src: ['*.js', 'public/**/*.js', '!public/js/lib/*.js'],
+            options: {
+                config: '.eslintrc'
+            }
+        }
+
     });
 
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('gruntify-eslint');
+    grunt.registerTask('default',['eslint']);
 };

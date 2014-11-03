@@ -1,24 +1,49 @@
-'use strict';
 
-function updateElements(localEl, globalEl)
-{
-    localEl.text(sessionStorage.localCounter);
-    globalEl.text(sessionStorage.globalCounter);
-}
-function initCounters(localEl, globalEl)
-{
-    sessionStorage.localCounter = 0;
-    $.get('/get',function(data) {
-       sessionStorage.globalCounter = data ? data : 0;
-    });
-    updateElements(localEl,globalEl);
-}
+/*eslint-disable no-unused-vars, wrap-iife */
+//used in the HTML file
 
-function incrementAndUpdate(localEl,globalEl) {
-    sessionStorage.localCounter = 1 + parseInt(sessionStorage.localCounter,10);
-    $.get('/click');
-    $.get('/get', function(data) {
-        sessionStorage.globalCounter = data ? data : 0;
-    });
-    updateElements(localEl,globalEl);
-}
+var counter = (function() {
+/*eslint-enable no-unused-vars */
+    'use strict';
+
+    if (typeof $ === 'undefined') {
+        throw new Error('No JQuery found');
+    }
+    var localCounter = 0;
+
+    function setContent(element, value)
+    {
+        element.text(value);
+    }
+
+    var initCounters = function initCounters(localEl, globalEl) {
+        localCounter = 0;
+        setContent(localEl, localCounter);
+        setContent(globalEl,'?');
+
+        $.get('/get', function (data) {
+            setContent(globalEl, data || 0);
+        });
+    };
+
+    function incrementAndUpdate(localEl, globalEl) {
+        localCounter = 1 + parseInt(localCounter, 10);
+        setContent(localEl,localCounter);
+        $.get('/click', function (data) {
+            setContent(globalEl, data || 0);
+        });
+    }
+
+    return {
+        init: function() {
+            var $localEl = $('#timesLocal'),
+                $globalEl = $('#timesGlobal');
+            initCounters($localEl,$globalEl);
+            $('#incrementCtr').click(function() {
+                incrementAndUpdate($localEl,$globalEl);
+            });
+        },
+        incrementAndUpdate: incrementAndUpdate,
+        initCounters: initCounters
+    };
+})();

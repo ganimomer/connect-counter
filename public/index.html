@@ -7,14 +7,7 @@
 		<script type="text/javascript" src="js/lib/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/counter.js"></script>
         <script type = 'text/javascript'>
-            $(document).ready(function(){
-                var $localEl = $('#timesLocal'),
-                    $globalEl = $('#timesGlobal');
-                initCounters($localEl,$globalEl);
-                $('#incrementCtr').click(function() {
-                    incrementAndUpdate($localEl,$globalEl);
-                });
-            });
+            $(counter.init);
         </script>
 
 	</head>

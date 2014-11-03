@@ -2,10 +2,11 @@
 
 var express = require('express');
 var config = require('./config.json');
+var path = require('path');
 
 var app = express(),
     counter = 0;
-app.use(express.static(__dirname+'/public/',{index: 'index.html'}));
+app.use(express.static(path.join(__dirname, '/public/')));
 
 app.get('/get', function(req, res) {
     console.log('get', counter);
@@ -15,7 +16,7 @@ app.get('/get', function(req, res) {
 app.get('/click', function(req, res) {
     console.log('click', counter);
     counter = counter + 1;
-    res.status(200).json();
+    res.status(200).json(counter);
 });
 
 app.listen(config.port, function() {

@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/ganimomer/connect-counter",
   "dependencies": {
-    "express": "^4.10.1"
+    "express": "^4.10.1",
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "gruntify-eslint": "^0.1.0"
   }
 }
